@@ -31,11 +31,11 @@
 
 ```bash
 {
+  role: { type : mongoose.Schema.Types.ObjectId, ref: "Role" },
   username: { type : String, required: true, unique: true },
   name:  { type : String, required: true },
   email: { type : String, required: true, unique: true },
   password: { type : String, require: true },
-  role: { type : mongoose.Schema.Types.ObjectId, ref: "Role" },
   activate: { type : Boolean , defalt: false },
   activateCode: { type : String },
   resetPass: { type : Boolean, default: false } ,
@@ -49,6 +49,9 @@
 
 ```bash
 {
+  user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
+  comment: { type : mongoose.Schema.Types.ObjectId, ref: "Comment" },
+  package: { type : mongoose.Schema.Types.ObjectId, ref: "Package" },
   describe: { type : String, required: true },
   title: { type : String, required: true },
   kind: { type : String, required: true },
@@ -58,9 +61,6 @@
   goal: { type : Number, required: true },
   pledged: { type : Number },
   isDel: { type : Boolean, default: false },
-  user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
-  comment: { type : mongoose.Schema.Types.ObjectId, ref: "Comment" },
-  package: { type : mongoose.Schema.Types.ObjectId, ref: "Package" },
   img: { type : String, required: true },
   img1: { type : String },
   im2: { type : String },
@@ -91,12 +91,13 @@ permission:  { type :Array }
 
 ```bash
 {
+user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
+project: { type : mongoose.Schema.Types.ObjectId, ref: "Project" },
 title: { type : String, required: true },
 amount: { type : Number, required: true },
 desc: { type : String, required: true },
 arrive: { type : String, required: true },
-user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
-project: { type : mongoose.Schema.Types.ObjectId, ref: "Project" },
+
 }
 ```
 
@@ -104,10 +105,11 @@ project: { type : mongoose.Schema.Types.ObjectId, ref: "Project" },
 
 ```bash
 {
-title: { type : String },
-time: { type : Date },
 user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
 project: { type : mongoose.Schema.Types.ObjectId, ref: "Project" },
+title: { type : String },
+time: { type : Date },
+
 }
 ```
 
@@ -115,6 +117,7 @@ project: { type : mongoose.Schema.Types.ObjectId, ref: "Project" },
 
 ```bash
 {
+user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
 title: { type : String, required: true },
 desc: { type : String, required: true },
 desc1: { type : String },
@@ -124,7 +127,6 @@ img: { type : String , required: true },
 img1: { type : String },
 img2: { type : String }
 img3: { type : String }
-user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
 }
 ```
 
