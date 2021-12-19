@@ -35,7 +35,6 @@
   email: { type: String, required: true, unique: true },
   password: { type: String, require: true },
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
-  name:  { type: String },
   activate: { type:Boolean , defalt: false },
   activateCode: { type: String },
   resetPass: { type:Boolean, default: false } ,
@@ -75,11 +74,20 @@
   desc6: { type:String }
 ```
 
-## Schema Project
+## Schema Role
 
 ```bash
 role: { type: String },
 permission:  {type:Array }
+```
+
+## Schema Comment
+
+```bash
+desc: { type: String },
+time: { type: Date },
+user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+project: { type: mongoose.Schema.Types.ObjectId, ref: "Project" },
 ```
 
 
