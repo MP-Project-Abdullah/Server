@@ -84,7 +84,18 @@ permission:  {type:Array }
 ## Schema Comment
 
 ```bash
-desc: { type: String },
+title: { type: String, required: true },
+amount: { type: Number, required: true },
+desc: { type: String, required: true },
+arrive: { type: String, required: true },
+user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+project: { type: mongoose.Schema.Types.ObjectId, ref: "Project" },
+```
+
+## Schema ؛Package
+
+```bash
+title: { type: String },
 time: { type: Date },
 user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 project: { type: mongoose.Schema.Types.ObjectId, ref: "Project" },
