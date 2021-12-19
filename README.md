@@ -1,5 +1,18 @@
 # Server
 
+# Packages
+
+- express
+- dotenv
+- bcrypt
+- cors
+- jsonwebtoken
+- mongoose
+- nodemailer
+- passport
+- passport-google-oauth20
+- popup-tools
+
 # UML
 
 ![Screenshot (134)](https://user-images.githubusercontent.com/92247941/146356877-fca77ef3-452f-48de-9d7b-fcc1d3b48e5f.png)
@@ -14,42 +27,42 @@
 
 | HTTP METHOD | URL             | Permissions | Behavior               |
 | ----------- | --------------- | ----------- | ---------------------- |
-| GET         | /alluser        | Private     | Get all users          |
-| GET         | /userById/:\_id | Private     | Get user by id         |
-| POST        | /register       | Private     | Create new user        |
-| POST        | /login          | Public      | Login                  |
-| PUT         | /updateName     | Private     | Update name the user   |
-| PUT         | /updateAvatar   | Private     | Update avatar the user |
-| PUT         | /deleteUser     | Private     | Soft delete the user   |
+| GET         | /alluser        | admin       | Get all users          |
+| GET         | /userById/:\_id | user        | Get user by id         |
+| POST        | /register       | geust       | Create new user        |
+| POST        | /login          | geust       | Login                  |
+| PUT         | /updateName     | user        | Update name the user   |
+| PUT         | /updateAvatar   | user        | Update avatar the user |
+| PUT         | /deleteUser     | admin       | Soft delete the user   |
 
 ## Project routers
 
 | HTTP METHOD | URL                | Permissions | Behavior                |
 | ----------- | ------------------ | ----------- | ----------------------- |
-| GET         | /allproject        | Public      | Get all project         |
-| GET         | /projectById/:\_id | Public      | Get project by id       |
-| POST        | /newProject        | Private     | Create new project      |
-| PUT         | /updateProject     | Private     | Update project the user |
-| PUT         | /deleteProject     | Private     | Soft delete the project |
+| GET         | /allproject        | geust       | Get all project         |
+| GET         | /projectById/:\_id | geust       | Get project by id       |
+| POST        | /newProject        | user        | Create new project      |
+| PUT         | /updateProject     | user        | Update project the user |
+| PUT         | /deleteProject     | user        | Soft delete the project |
 
 ## Comment routers
 
 | HTTP METHOD | URL                | Permissions | Behavior                    |
 | ----------- | ------------------ | ----------- | --------------------------- |
-| GET         | /allComment/:id    | Public      | Get all comments by post id |
-| DELETE      | /deleteComment/:id | Private     | Delete comment              |
-| POST        | /newComment        | Private     | Create new comment          |
+| GET         | /allComment/:id    | geust       | Get all comments by post id |
+| DELETE      | /deleteComment/:id | user        | Delete comment              |
+| POST        | /newComment        | user        | Create new comment          |
 
 ## Role routers
 
 | HTTP METHOD | URL      | Permissions | Behavior        |
 | ----------- | -------- | ----------- | --------------- |
-| GET         | /allrole | Private     | Get all role    |
-| POST        | /newRole | Private     | Create new role |
+| GET         | /allrole | admin       | Get all role    |
+| POST        | /newRole | admin       | Create new role |
 
 ## Package routers
 
 | HTTP METHOD | URL          | Permissions | Behavior          |
 | ----------- | ------------ | ----------- | ----------------- |
-| GET         | /package/:id | Private     | Get package by id |
-| POST        | /newPackage  | Private     | Create new role   |
+| GET         | /package/:id | user        | Get package by id |
+| POST        | /newPackage  | user        | Create new role   |
