@@ -27,6 +27,23 @@
 
 ![Screenshot (144)](https://user-images.githubusercontent.com/92247941/146668505-b35da740-6c0c-4996-a4d1-b698900dc42b.png)
 
+## Schema user
+
+```bash
+ username: { type: String, required: true, unique: true },
+ name:  { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, require: true },
+    role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
+   name:  { type: String},
+   activate: {type:Boolean , defalt: false},
+   activateCode: {type: String},
+   resetPass: {type:Boolean, default: false},
+   resetCode: {type:String},
+   isDel: {type:Boolean, default:false},
+   spam:{type:String}
+```
+
 ## User routers
 
 | HTTP METHOD | URL             | Permissions | Behavior               | Auth                          |
