@@ -14,12 +14,12 @@
 
 | HTTP METHOD | URL             | Permissions | Behavior               |
 | ----------- | --------------- | ----------- | ---------------------- |
-| GET         | /alluser        | Public      | Get all users          |
-| GET         | /userById/:\_id | Public      | Get user by id         |
-| POST        | /register       | Public      | Create new user        |
+| GET         | /alluser        | Private     | Get all users          |
+| GET         | /userById/:\_id | Private     | Get user by id         |
+| POST        | /register       | Private     | Create new user        |
 | POST        | /login          | Public      | Login                  |
-| PUT         | /updateName     | Public      | Update name the user   |
-| PUT         | /updateAvatar   | Public      | Update avatar the user |
+| PUT         | /updateName     | Private     | Update name the user   |
+| PUT         | /updateAvatar   | Private     | Update avatar the user |
 | PUT         | /deleteUser     | Private     | Soft delete the user   |
 
 ## Project routers
@@ -28,17 +28,17 @@
 | ----------- | ------------------ | ----------- | ----------------------- |
 | GET         | /allproject        | Public      | Get all project         |
 | GET         | /projectById/:\_id | Public      | Get project by id       |
-| POST        | /newProject        | Public      | Create new project      |
-| PUT         | /updateProject     | Public      | Update project the user |
+| POST        | /newProject        | Private     | Create new project      |
+| PUT         | /updateProject     | Private     | Update project the user |
 | PUT         | /deleteProject     | Private     | Soft delete the project |
 
-## Commment routers
+## Comment routers
 
 | HTTP METHOD | URL                | Permissions | Behavior                    |
 | ----------- | ------------------ | ----------- | --------------------------- |
 | GET         | /allComment/:id    | Public      | Get all comments by post id |
-| DELETE      | /deleteComment/:id | Public      | Delete comment              |
-| POST        | /newComment        | Public      | Create new comment          |
+| DELETE      | /deleteComment/:id | Private     | Delete comment              |
+| POST        | /newComment        | Private     | Create new comment          |
 
 ## Role routers
 
@@ -46,3 +46,10 @@
 | ----------- | -------- | ----------- | --------------- |
 | GET         | /allrole | Private     | Get all role    |
 | POST        | /newRole | Private     | Create new role |
+
+## Package routers
+
+| HTTP METHOD | URL          | Permissions | Behavior          |
+| ----------- | ------------ | ----------- | ----------------- |
+| GET         | /package/:id | Private     | Get package by id |
+| POST        | /newPackage  | Private     | Create new role   |
