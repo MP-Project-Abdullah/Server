@@ -13,9 +13,11 @@
 - passport-google-oauth20
 - popup-tools
 
-# Trello
+# Links
 
 [Trello](https://trello.com/b/I4xUaGQ9/mp-project-abdullah)
+[Server](https://github.com/MP-Project-Abdullah/Server)
+[clinte](https://github.com/MP-Project-Abdullah/Client/blob/main/README.md)
 
 ## Schema User
 
