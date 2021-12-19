@@ -31,3 +31,11 @@
 | POST        | /newProject        | Public      | Create new project      |
 | PUT         | /updateProject     | Public      | Update project the user |
 | PUT         | /deleteProject     | Private     | Soft delete the project |
+
+## Commment routers
+
+| HTTP METHOD | URL                | Permissions | Behavior                    |
+| ----------- | ------------------ | ----------- | --------------------------- |
+| GET         | /allComment/:id    | Public      | Get all comments by post id |
+| DELETE      | /deleteComment/:id | Public      | Delete comment              |
+| POST        | /newComment        | Public      | Create new comment          |
