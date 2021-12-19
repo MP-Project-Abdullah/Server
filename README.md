@@ -29,44 +29,44 @@
 
 ## User routers
 
-| HTTP METHOD | URL             | Permissions | Behavior               |
-| ----------- | --------------- | ----------- | ---------------------- |
-| GET         | /alluser        | admin       | Get all users          |
-| GET         | /userById/:\_id | user        | Get user by id         |
-| POST        | /register       | geust       | Create new user        |
-| POST        | /login          | geust       | Login                  |
-| PUT         | /updateName     | user        | Update name the user   |
-| PUT         | /updateAvatar   | user        | Update avatar the user |
-| PUT         | /deleteUser     | admin       | Soft delete the user   |
+| HTTP METHOD | URL             | Permissions | Behavior               | Auth                         |
+| ----------- | --------------- | ----------- | ---------------------- | ---------------------------- |
+| GET         | /alluser        | admin       | Get all users          | Authentication,Authorization |
+| GET         | /userById/:\_id | user        | Get user by id         | Authentication               |
+| POST        | /register       | geust       | Create new user        | Authentication               |
+| POST        | /login          | geust       | Login                  |                              |
+| PUT         | /updateName     | user        | Update name the user   | Authentication               |
+| PUT         | /updateAvatar   | user        | Update avatar the user | Authentication               |
+| PUT         | /deleteUser     | admin       | Soft delete the user   | Authentication,Authorization |
 
 ## Project routers
 
-| HTTP METHOD | URL                | Permissions | Behavior                |
-| ----------- | ------------------ | ----------- | ----------------------- |
-| GET         | /allproject        | geust       | Get all project         |
-| GET         | /projectById/:\_id | geust       | Get project by id       |
-| POST        | /newProject        | user        | Create new project      |
-| PUT         | /updateProject     | user        | Update project the user |
-| PUT         | /deleteProject     | user        | Soft delete the project |
+| HTTP METHOD | URL                | Permissions | Behavior                | Auth           |
+| ----------- | ------------------ | ----------- | ----------------------- | -------------- |
+| GET         | /allproject        | geust       | Get all project         |                |
+| GET         | /projectById/:\_id | geust       | Get project by id       |                |
+| POST        | /newProject        | user        | Create new project      | Authentication |
+| PUT         | /updateProject     | user        | Update project the user | Authentication |
+| PUT         | /deleteProject     | user        | Soft delete the project | Authentication |
 
 ## Comment routers
 
-| HTTP METHOD | URL                | Permissions | Behavior                    |
-| ----------- | ------------------ | ----------- | --------------------------- |
-| GET         | /allComment/:id    | geust       | Get all comments by post id |
-| DELETE      | /deleteComment/:id | user        | Delete comment              |
-| POST        | /newComment        | user        | Create new comment          |
+| HTTP METHOD | URL                | Permissions | Behavior                    | ِAuth          |
+| ----------- | ------------------ | ----------- | --------------------------- | -------------- |
+| GET         | /allComment/:id    | geust       | Get all comments by post id |                |
+| DELETE      | /deleteComment/:id | user        | Delete comment              | Authentication |
+| POST        | /newComment        | user        | Create new comment          | Authentication |
 
 ## Role routers
 
-| HTTP METHOD | URL      | Permissions | Behavior        |
-| ----------- | -------- | ----------- | --------------- |
-| GET         | /allrole | admin       | Get all role    |
-| POST        | /newRole | admin       | Create new role |
+| HTTP METHOD | URL      | Permissions | Behavior        | Auth                         |
+| ----------- | -------- | ----------- | --------------- | ---------------------------- |
+| GET         | /allrole | admin       | Get all role    | Authentication,Authorization |
+| POST        | /newRole | admin       | Create new role | Authentication,Authorization |
 
 ## Package routers
 
-| HTTP METHOD | URL          | Permissions | Behavior          |
-| ----------- | ------------ | ----------- | ----------------- |
-| GET         | /package/:id | user        | Get package by id |
-| POST        | /newPackage  | user        | Create new role   |
+| HTTP METHOD | URL          | Permissions | Behavior          | Auth           |
+| ----------- | ------------ | ----------- | ----------------- | -------------- |
+| GET         | /package/:id | user        | Get package by id | Authentication |
+| POST        | /newPackage  | user        | Create new role   | Authentication |
