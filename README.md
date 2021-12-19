@@ -38,10 +38,41 @@
   name:  { type: String },
   activate: {type:Boolean , defalt: false },
   activateCode: {type: String },
-  resetPass: {type:Boolean, default: false} ,
+  resetPass: {type:Boolean, default: false } ,
   resetCode: {type:String },
-  isDel: {type:Boolean, default:false },
+  isDel: {type:Boolean, default: false },
   spam:{type: String }
+```
+
+## Schema Project
+
+```bash
+  describe: { type: String, required: true },
+  title: { type: String, required: true },
+  kind: { type: String, required: true },
+  time: { type: Date },
+  deadline: { type: Number, required: true },
+  location: { type: String },
+  goal: { type: Number, required: true },
+  pledged: { type: Number },
+  isDel: { type: Boolean, default: false },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  comment: { type: mongoose.Schema.Types.ObjectId, ref: "Comment" },
+  package: { type: mongoose.Schema.Types.ObjectId, ref: "Package" },
+  img: { type:String, required: true },
+  img1: { type:String },
+  im2: { type:String },
+  im3: { type:String },
+  im4: { type:String },
+  im5: { type:String },
+  im6: { type:String },
+  desc: { type:String },
+  desc1: { type:String },
+  desc2: { type:String },
+  desc3: { type:String },
+  desc4: { type:String },
+  desc5: { type:String },
+  desc6: { type:String }
 ```
 
 ## User routers
