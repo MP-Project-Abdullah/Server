@@ -29,15 +29,15 @@
 
 ## User routers
 
-| HTTP METHOD | URL             | Permissions | Behavior               | Auth                         |
-| ----------- | --------------- | ----------- | ---------------------- | ---------------------------- |
-| GET         | /alluser        | admin       | Get all users          | Authentication,Authorization |
-| GET         | /userById/:\_id | user        | Get user by id         | Authentication               |
-| POST        | /register       | geust       | Create new user        | Authentication               |
-| POST        | /login          | geust       | Login                  |                              |
-| PUT         | /updateName     | user        | Update name the user   | Authentication               |
-| PUT         | /updateAvatar   | user        | Update avatar the user | Authentication               |
-| PUT         | /deleteUser     | admin       | Soft delete the user   | Authentication,Authorization |
+| HTTP METHOD | URL             | Permissions | Behavior               | Auth                          |
+| ----------- | --------------- | ----------- | ---------------------- | ----------------------------- |
+| GET         | /alluser        | admin       | Get all users          | Authentication, Authorization |
+| GET         | /userById/:\_id | user        | Get user by id         | Authentication                |
+| POST        | /register       | geust       | Create new user        | Authentication                |
+| POST        | /login          | geust       | Login                  |                               |
+| PUT         | /updateName     | user        | Update name the user   | Authentication                |
+| PUT         | /updateAvatar   | user        | Update avatar the user | Authentication                |
+| PUT         | /deleteUser     | admin       | Soft delete the user   | Authentication, Authorization |
 
 ## Project routers
 
@@ -59,10 +59,10 @@
 
 ## Role routers
 
-| HTTP METHOD | URL      | Permissions | Behavior        | Auth                         |
-| ----------- | -------- | ----------- | --------------- | ---------------------------- |
-| GET         | /allrole | admin       | Get all role    | Authentication,Authorization |
-| POST        | /newRole | admin       | Create new role | Authentication,Authorization |
+| HTTP METHOD | URL      | Permissions | Behavior        | Auth                          |
+| ----------- | -------- | ----------- | --------------- | ----------------------------- |
+| GET         | /allrole | admin       | Get all role    | Authentication, Authorization |
+| POST        | /newRole | admin       | Create new role | Authentication, Authorization |
 
 ## Package routers
 
