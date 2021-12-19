@@ -17,118 +17,98 @@
 
 [Trello](https://trello.com/b/I4xUaGQ9/mp-project-abdullah)
 
-# UML
+## Schema User
 
-![Screenshot (134)](https://user-images.githubusercontent.com/92247941/146356877-fca77ef3-452f-48de-9d7b-fcc1d3b48e5f.png)
+| Key          | Type     | Options           | REF  | default value |
+| ------------ | -------- | ----------------- | ---- | ------------- |
+| role         | objectId |                   | Role |               |
+| username     | String   | requrired, unique |      |               |
+| name         | String   | requrired         |      |               |
+| email        | String   | requrired, unique |      |               |
+| password     | String   | requrired         |      |               |
+| activate     | Boolean  |                   |      | false         |
+| activateCode | String   |                   |      |               |
+| resetPass    | Boolean  |                   |      | false         |
+| resetCode    | String   |                   |      |               |
+| isDel        | Boolean  |                   |      | false         |
+| spam         | String   |                   |      |               |
 
-[here](https://drive.google.com/file/d/1CzUcRdSd1-91CtpPpF_AEq5frq5_CaT2/view?usp=sharing)
+## Schema Project
+
+| Key      | Type     | Options   | REF     | default value |
+| -------- | -------- | --------- | ------- | ------------- |
+| comment  | objectId |           | Comment |               |
+| user     | objectId |           | User    |               |
+| package  | objectId |           | Package |               |
+| describe | String   | requrired |         |               |
+| title    | String   | requrired |         |               |
+| kind     | String   | requrired |         |               |
+| deadline | String   | requrired |         |               |
+| time     | Date     |           |         |               |
+| location | String   |           |         |               |
+| goal     | Number   | requrired |         |               |
+| pledged  | Number   |           |         |               |
+| isDel    | Boolean  |           |         | false         |
+| img      | String   | requrired |         |               |
+| desc     | String   | requrired |         |               |
+| img1     | String   |           |         |               |
+| img2     | String   |           |         |               |
+| img3     | String   |           |         |               |
+| img4     | String   |           |         |               |
+| img5     | String   |           |         |               |
+| img6     | String   |           |         |               |
+| desc1    | String   |           |         |               |
+| desc2    | String   |           |         |               |
+| desc3    | String   |           |         |               |
+| desc4    | String   |           |         |               |
+| desc5    | String   |           |         |               |
+| desc6    | String   |           |         |               |
+
+## Schema Role
+
+| Key        | Type   | Options | REF | default value |
+| ---------- | ------ | ------- | --- | ------------- |
+| role       | String |         |     |               |
+| permission | Array  |         |     |               |
+
+## Schema Comment
+
+| Key     | Type     | Options   | REF     | default value |
+| ------- | -------- | --------- | ------- | ------------- |
+| project | objectId |           | Project |               |
+| user    | objectId |           | User    |               |
+| title   | String   | requrired |         |               |
+| amount  | Number   | requrired |         |               |
+| desc    | String   | requrired |         |               |
+| arrive  | String   | requrired |         |               |
+
+## Schema Package
+
+| Key     | Type     | Options   | REF     | default value |
+| ------- | -------- | --------- | ------- | ------------- |
+| project | objectId |           | Project |               |
+| user    | objectId |           | User    |               |
+| title   | String   | requrired |         |               |
+| time    | Date     |           |         |               |
+
+## Schema SuccessStory
+
+| Key   | Type     | Options   | REF  | default value |
+| ----- | -------- | --------- | ---- | ------------- |
+| user  | objectId |           | User |               |
+| title | String   | requrired |      |               |
+| desc  | String   | requrired |      |               |
+| img   | String   | requrired |      |               |
+| desc1 | String   |           |      |               |
+| desc2 | String   |           |      |               |
+| desc3 | String   |           |      |               |
+| img1  | String   |           |      |               |
+| img2  | String   |           |      |               |
+| img3  | String   |           |      |               |
 
 # ERD
 
 ![Screenshot (144)](https://user-images.githubusercontent.com/92247941/146668505-b35da740-6c0c-4996-a4d1-b698900dc42b.png)
-
-## Schema User
-
-```bash
-{
-  role: { type : mongoose.Schema.Types.ObjectId, ref: "Role" },
-  username: { type : String, required: true, unique: true },
-  name:  { type : String, required: true },
-  email: { type : String, required: true, unique: true },
-  password: { type : String, require: true },
-  activate: { type : Boolean , defalt: false },
-  activateCode: { type : String },
-  resetPass: { type : Boolean, default: false } ,
-  resetCode: { type : String },
-  isDel: { type : Boolean, default: false },
-  spam:{ type : String }
-}
-```
-
-## Schema Project
-
-```bash
-{
-  user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
-  comment: { type : mongoose.Schema.Types.ObjectId, ref: "Comment" },
-  package: { type : mongoose.Schema.Types.ObjectId, ref: "Package" },
-  describe: { type : String, required: true },
-  title: { type : String, required: true },
-  kind: { type : String, required: true },
-  time: { type : Date },
-  deadline: { type : Number, required: true },
-  location: { type : String },
-  goal: { type : Number, required: true },
-  pledged: { type : Number },
-  isDel: { type : Boolean, default: false },
-  img: { type : String, required: true },
-  img1: { type : String },
-  im2: { type : String },
-  im3: { type : String },
-  im4: { type : String },
-  im5: { type : String },
-  im6: { type : String },
-  desc: { type : String },
-  desc1: { type : String },
-  desc2: { type : String },
-  desc3: { type : String },
-  desc4: { type : String },
-  desc5: { type : String },
-  desc6: { type : String }
-}
-```
-
-## Schema Role
-
-```bash
-{
-role: { type : String },
-permission:  { type :Array }
-}
-```
-
-## Schema Comment
-
-```bash
-{
-user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
-project: { type : mongoose.Schema.Types.ObjectId, ref: "Project" },
-title: { type : String, required: true },
-amount: { type : Number, required: true },
-desc: { type : String, required: true },
-arrive: { type : String, required: true },
-
-}
-```
-
-## Schema Package
-
-```bash
-{
-user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
-project: { type : mongoose.Schema.Types.ObjectId, ref: "Project" },
-title: { type : String },
-time: { type : Date },
-
-}
-```
-
-## Schema SuccessStory
-
-```bash
-{
-user: { type : mongoose.Schema.Types.ObjectId, ref: "User" },
-title: { type : String, required: true },
-desc: { type : String, required: true },
-desc1: { type : String },
-desc2: { type : String },
-desc3: { type : String },
-img: { type : String , required: true },
-img1: { type : String },
-img2: { type : String }
-img3: { type : String }
-}
-```
 
 ## User routers
 
@@ -173,3 +153,9 @@ img3: { type : String }
 | ----------- | ------------ | ----------- | ----------------- | -------------- | -------------- | ----------------- |
 | GET         | /package/:id | user        | Get package by id | Authentication | RES 200        | RES 400 , RES 404 |
 | POST        | /newPackage  | user        | Create new role   | Authentication | RES 200        | RES 400           |
+
+# UML
+
+![Screenshot (134)](https://user-images.githubusercontent.com/92247941/146356877-fca77ef3-452f-48de-9d7b-fcc1d3b48e5f.png)
+
+[here](https://drive.google.com/file/d/1CzUcRdSd1-91CtpPpF_AEq5frq5_CaT2/view?usp=sharing)
