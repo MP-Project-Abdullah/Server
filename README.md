@@ -30,18 +30,18 @@
 ## Schema user
 
 ```bash
- username: { type: String, required: true, unique: true },
- name:  { type: String, required: true },
+  username: { type: String, required: true, unique: true },
+  name:  { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, require: true },
-    role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
-   name:  { type: String},
-   activate: {type:Boolean , defalt: false},
-   activateCode: {type: String},
-   resetPass: {type:Boolean, default: false},
-   resetCode: {type:String},
-   isDel: {type:Boolean, default:false},
-   spam:{type:String}
+  role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
+  name:  { type: String },
+  activate: {type:Boolean , defalt: false },
+  activateCode: {type: String },
+  resetPass: {type:Boolean, default: false} ,
+  resetCode: {type:String },
+  isDel: {type:Boolean, default:false },
+  spam:{type: String }
 ```
 
 ## User routers
