@@ -8,4 +8,4 @@
 
 # ERD
 
-![Screenshot (135)](https://user-images.githubusercontent.com/92247941/146357089-5fed0d90-d8b8-48fc-baa5-d38c3e1f0775.png)
+![Screenshot (143)](https://user-images.githubusercontent.com/92247941/146666034-4578043d-b5ed-4666-a29d-5793463d4c1a.png)
