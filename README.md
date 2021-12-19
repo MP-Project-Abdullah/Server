@@ -30,6 +30,7 @@
 ## Schema user
 
 ```bash
+{
   username: { type: String, required: true, unique: true },
   name:  { type: String, required: true },
   email: { type: String, required: true, unique: true },
@@ -41,11 +42,13 @@
   resetCode: { type:String },
   isDel: { type:Boolean, default: false },
   spam:{ type: String }
+}
 ```
 
 ## Schema Project
 
 ```bash
+{
   describe: { type: String, required: true },
   title: { type: String, required: true },
   kind: { type: String, required: true },
@@ -72,33 +75,57 @@
   desc4: { type:String },
   desc5: { type:String },
   desc6: { type:String }
+}
 ```
 
 ## Schema Role
 
 ```bash
+{
 role: { type: String },
 permission:  {type:Array }
+}
 ```
 
 ## Schema Comment
 
 ```bash
+{
 title: { type: String, required: true },
 amount: { type: Number, required: true },
 desc: { type: String, required: true },
 arrive: { type: String, required: true },
 user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 project: { type: mongoose.Schema.Types.ObjectId, ref: "Project" },
+}
 ```
 
-## Schema ؛Package
+## Schema Package
 
 ```bash
+{
 title: { type: String },
 time: { type: Date },
 user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 project: { type: mongoose.Schema.Types.ObjectId, ref: "Project" },
+}
+```
+
+## Schema SuccessStory
+
+```bash
+{
+title: { type: String, required: true },
+desc: { type: String, required: true },
+desc1: { type: String },
+desc2: { type: String },
+desc3: { type: String },
+img: {type:String , required: true },
+img1: { type: String },
+img2: { type: String }
+img3: { type: String }
+user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+}
 ```
 
 
