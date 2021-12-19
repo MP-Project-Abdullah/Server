@@ -39,3 +39,10 @@
 | GET         | /allComment/:id    | Public      | Get all comments by post id |
 | DELETE      | /deleteComment/:id | Public      | Delete comment              |
 | POST        | /newComment        | Public      | Create new comment          |
+
+## Role routers
+
+| HTTP METHOD | URL      | Permissions | Behavior        |
+| ----------- | -------- | ----------- | --------------- |
+| GET         | /allrole | Private     | Get all role    |
+| POST        | /newRole | Private     | Create new role |
