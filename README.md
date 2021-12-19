@@ -36,12 +36,12 @@
   password: { type: String, require: true },
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
   name:  { type: String },
-  activate: {type:Boolean , defalt: false },
-  activateCode: {type: String },
-  resetPass: {type:Boolean, default: false } ,
-  resetCode: {type:String },
-  isDel: {type:Boolean, default: false },
-  spam:{type: String }
+  activate: { type:Boolean , defalt: false },
+  activateCode: { type: String },
+  resetPass: { type:Boolean, default: false } ,
+  resetCode: { type:String },
+  isDel: { type:Boolean, default: false },
+  spam:{ type: String }
 ```
 
 ## Schema Project
@@ -74,6 +74,15 @@
   desc5: { type:String },
   desc6: { type:String }
 ```
+
+## Schema Project
+
+```bash
+role: { type: String },
+permission:  {type:Array }
+```
+
+
 
 ## User routers
 
