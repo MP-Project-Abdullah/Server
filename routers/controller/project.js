@@ -207,10 +207,32 @@ const updateProject = (req, res) => {
     });
 };
 
+// Approved project
+const approvedProject = (req, res) => {
+  const { _id } = req.params;
+  projectModel
+    .findOneAndUpdate(
+      { _id: _id },
+      { $set: { approved: true } },
+      { new: true }
+    )
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(404).send("project not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
 module.exports = {
   newProject,
   getProjects,
   softDel,
   getProject,
   updateProject,
+  approvedProject,
 };

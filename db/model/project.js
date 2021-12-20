@@ -12,6 +12,7 @@ const project = new mongoose.Schema({
   img: { type: String, required: true },
   desc: { type: String, required: true },
   time: { type: Date },
+  approved: { type: Boolean, default: false },
   location: { type: String, required: true },
   pledged: { type: Number },
   isDel: { type: Boolean, default: false },

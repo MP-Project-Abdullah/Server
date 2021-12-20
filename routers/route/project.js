@@ -8,11 +8,12 @@ const {
   getProjects,
   softDel,
   getProject,
-  updateProject
+  updateProject,
+  approvedProject,
 } = require("../controller/project");
 
 // Create new project
-projectRouter.post("/newProject/:_id",authentication, newProject);
+projectRouter.post("/newProject/:_id", authentication, newProject);
 
 // Get all projects
 projectRouter.get("/projects", getProjects);
@@ -25,5 +26,8 @@ projectRouter.put("/deleteProject/:_id", softDel);
 
 // update info project
 projectRouter.put("/updateProject/:_id", updateProject);
+
+// Approved project
+projectRouter.put("/aprooved/:_id", approvedProject);
 
 module.exports = projectRouter;
