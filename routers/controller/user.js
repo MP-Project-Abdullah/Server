@@ -3,29 +3,60 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const secret = process.env.SECRET_KEY;
 const salt = Number(process.env.SALT);
-
+const nodemailer = require("nodemailer");
 // Create new user
 const register = async (req, res) => {
-  const { email, name, username, password } = req.body;
-  const savedPassword = await bcrypt.hash(password, salt);
+  const { email, username, password, name } = req.body;
 
+  const savedEmail = email.toLowerCase();
+  const savedPassword = await bcrypt.hash(password, salt);
   try {
-    const newUser = userModel({
-      email,
-      name,
-      username,
+    let code = "";
+    const num = "0123456789";
+    for (let i = 0; i < 4; i++) {
+      code += num.charAt(Math.floor(Math.random() * num.length));
+    }
+
+    let mailTransporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      requireTLS: true,
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    });
+
+    const newUser = new userModel({
+      email: savedEmail,
+      username: username,
       password: savedPassword,
+      activateCode: code,
+      name,
     });
     newUser
       .save()
       .then((result) => {
-        res.status(200).json(result);
+        let mail = {
+          from: "w08d04socialmedia@gmail.com",
+          to: result.email,
+          subject: "Confirm your email",
+          text: `Please enter this code ${code} ,Thank you!`,
+        };
+        mailTransporter.sendMail(mail, (err, data) => {
+          if (err) {
+            res.status(400).json(err);
+          } else {
+            res.status(200).json(result);
+          }
+        });
       })
       .catch((err) => {
-        res.status(400).json(err);
+        res.status(400).send(err);
       });
   } catch (error) {
-    console.log(error);
+    res.status(400).json(error);
   }
 };
 
