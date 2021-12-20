@@ -9,4 +9,4 @@ const package = new mongoose.Schema({
   arrive: { type: String, required: true },
 });
 
-module.exports = mongoose.model("Paxkage", package);
+module.exports = mongoose.model("Package", package);

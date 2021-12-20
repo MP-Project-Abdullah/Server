@@ -25,6 +25,11 @@ app.use(projectRouter);
 const commentRouter = require("./routers/route/comment");
 app.use(commentRouter);
 
+// Package
+// Comment
+const packagetRouter = require("./routers/route/package");
+app.use(packagetRouter);
+
 // PORT
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

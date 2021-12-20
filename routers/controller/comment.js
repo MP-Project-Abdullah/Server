@@ -41,4 +41,20 @@ const deleteCommet = (req, res) => {
     });
 };
 
-module.exports = { newComment,deleteCommet };
+// Get one comment
+const getComment = (req, res) => {
+  const { _id } = req.params;
+  try {
+    commentModel.findOne({ _id: _id }).then((result) => {
+      if (result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).send("Comment deleted");
+      }
+    });
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+module.exports = { newComment, deleteCommet,getComment };
