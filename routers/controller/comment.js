@@ -1,5 +1,6 @@
 const commentModel = require("../../db/model/comment");
 
+// Create new comment
 const newComment = (req, res) => {
   const { desc } = req.body;
   const { userId, projectId } = req.params;
@@ -23,4 +24,21 @@ const newComment = (req, res) => {
   }
 };
 
-module.exports = { newComment };
+// Delete comment
+const deleteCommet = (req, res) => {
+  const { _id } = req.params;
+  commentModel
+    .findOneAndDelete({ _id: _id })
+    .then((result) => {
+      if (result) {
+        res.status(200).json("Comment deleted");
+      } else {
+        res.status(404).send("Not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+module.exports = { newComment,deleteCommet };
