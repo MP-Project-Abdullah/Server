@@ -61,6 +61,23 @@ const getUsers = (req, res) => {
     });
 };
 
+// Get user by id
+const getUser = (req, res) => {
+  const { id } = req.params;
+  userModel
+    .find({ _id: id })
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(400).send("Users not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
 // Toggle delete user ( soft )
 const softDel = (req, res) => {
   const { _id } = req.params;
@@ -103,4 +120,4 @@ const softDel = (req, res) => {
   }
 };
 
-module.exports = { register, login, softDel, getUsers };
+module.exports = { register, login, softDel, getUsers ,getUser};
