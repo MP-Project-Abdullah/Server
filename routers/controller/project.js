@@ -47,44 +47,60 @@ const getProjects = (req, res) => {
 
 // Toggle delete project ( soft )
 const softDel = (req, res) => {
-    const { _id } = req.params;
-    try {
-        projectModel.findById({ _id: _id }).then((item) => {
-        if (item) {
-          if (item.isDel == false) {
-            projectModel
-              .findByIdAndUpdate(
-                { _id: _id },
-                { $set: { isDel: true } },
-                { new: true }
-              )
-              .then((result) => {
-                res.status(200).json(result);
-              })
-              .catch((err) => {
-                res.status(400).json(err);
-              });
-          } else {
-            projectModel
-              .findByIdAndUpdate(
-                { _id: _id },
-                { $set: { isDel: false } },
-                { new: true }
-              )
-              .then((result) => {
-                res.status(200).json(result);
-              })
-              .catch((err) => {
-                res.status(400).json(err);
-              });
-          }
+  const { _id } = req.params;
+  try {
+    projectModel.findById({ _id: _id }).then((item) => {
+      if (item) {
+        if (item.isDel == false) {
+          projectModel
+            .findByIdAndUpdate(
+              { _id: _id },
+              { $set: { isDel: true } },
+              { new: true }
+            )
+            .then((result) => {
+              res.status(200).json(result);
+            })
+            .catch((err) => {
+              res.status(400).json(err);
+            });
         } else {
-          res.status(400).send("User not found");
+          projectModel
+            .findByIdAndUpdate(
+              { _id: _id },
+              { $set: { isDel: false } },
+              { new: true }
+            )
+            .then((result) => {
+              res.status(200).json(result);
+            })
+            .catch((err) => {
+              res.status(400).json(err);
+            });
         }
-      });
-    } catch (error) {
-      res.status(400).json(error);
-    }
-  };
+      } else {
+        res.status(400).send("User not found");
+      }
+    });
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
 
-module.exports = { newProject,getProjects,softDel };
+const getProject = (req, res) => {
+  const { id } = req.params;
+  projectModel
+    .find({ _id: id })
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(400).send("Users not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+module.exports = { newProject, getProjects, softDel, getProject };

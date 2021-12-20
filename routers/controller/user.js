@@ -53,7 +53,7 @@ const getUsers = (req, res) => {
       if (result) {
         res.send(result);
       } else {
-        res.status(400).send("Users not found");
+        res.status(404).json({ message: "Not found" });
       }
     })
     .catch((err) => {
@@ -120,4 +120,4 @@ const softDel = (req, res) => {
   }
 };
 
-module.exports = { register, login, softDel, getUsers ,getUser};
+module.exports = { register, login, softDel, getUsers, getUser };
