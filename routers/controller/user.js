@@ -2,6 +2,7 @@ const userModel = require("../../db/model/user");
 
 const bcrypt = require("bcrypt");
 
+// Create new user
 const register = (req, res) => {
   const { email, name, username, password } = req.body;
 
@@ -25,6 +26,7 @@ const register = (req, res) => {
   }
 };
 
+// Login user
 const login = (req, res) => {
   const { data, password } = req.body;
 
