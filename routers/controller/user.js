@@ -25,4 +25,22 @@ const register = (req, res) => {
   }
 };
 
+const login = (req, res) => {
+  const { data, password } = req.body;
+
+  userModel
+    .findOne({ $or: [{ email: data }, { username: data }] })
+    .then((result) => {
+      if (result) {
+        if (password === result.password) {
+          res.status(200).josn({ message: "Login successfully" });
+        } else {
+          res.status(400).json({ message: "Wrong email or password" });
+        }
+      } else {
+        res.status(404).json({ message: "Not found" });
+      }
+    });
+};
+
 module.exports = { register };
