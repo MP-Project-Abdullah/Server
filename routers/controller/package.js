@@ -27,6 +27,7 @@ const newPackage = (req, res) => {
   }
 };
 
+// Get all packages base on project id
 const getPackages = (req, res) => {
   const { projectId } = req.params;
   try {
