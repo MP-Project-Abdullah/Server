@@ -44,4 +44,5 @@ const getPackages = (req, res) => {
 
 module.exports = {
   newPackage,
+  getPackages
 };
