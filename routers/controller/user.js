@@ -120,4 +120,26 @@ const softDel = (req, res) => {
   }
 };
 
-module.exports = { register, login, softDel, getUsers, getUser };
+// Update info user
+const updateUser = (req, res) => {
+  const { _id } = req.params;
+  const { name, avatar } = req.body;
+  userModel
+    .findOneAndUpdate(
+      { _id: _id },
+      { $set: { name: name, avatar: avatar } },
+      { new: true }
+    )
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(404).send("user not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+module.exports = { register, login, softDel, getUsers, getUser, updateUser };

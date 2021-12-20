@@ -7,6 +7,7 @@ const {
   softDel,
   getUsers,
   getUser,
+  updateUser,
 } = require("../controller/user");
 
 // Create new user
@@ -23,5 +24,8 @@ userRouter.get("/user/:id", getUser);
 
 // Soft delete user
 userRouter.put("/deleteUser/:_id", softDel);
+
+// Update name and avatar user
+userRouter.put("/updateUser/:_id", updateUser);
 
 module.exports = userRouter;

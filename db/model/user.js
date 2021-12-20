@@ -10,6 +10,7 @@ const user = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, require: true },
+  avatar: { type: String },
   activate: { type: Boolean, default: false },
   activateCode: { type: String },
   resetPass: { type: Boolean, default: false },
