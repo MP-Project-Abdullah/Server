@@ -31,4 +31,20 @@ const newStory = (req, res) => {
   }
 };
 
-module.exports = { newStory };
+// Get all story
+const getStory = (req, res) => {
+    storyModel
+      .find({})
+      .then((result) => {
+        if (result) {
+          res.send(result);
+        } else {
+          res.status(404).json({ message: "Not found" });
+        }
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  };
+
+module.exports = { newStory,getStory };
