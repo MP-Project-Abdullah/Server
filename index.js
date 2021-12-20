@@ -9,8 +9,13 @@ app.use(express.json());
 app.use(cors());
 
 // Routers
+//User
 const userRouter = require("./routers/route/user");
 app.use(userRouter);
+
+// Role
+const roleRouter = require("./routers/route/role");
+app.use(roleRouter);
 
 // PORT
 const PORT = process.env.PORT;
