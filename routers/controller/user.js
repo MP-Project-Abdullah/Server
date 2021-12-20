@@ -33,7 +33,7 @@ const login = (req, res) => {
     .then((result) => {
       if (result) {
         if (password === result.password) {
-          res.status(200).josn({ message: "Login successfully" });
+          res.status(200).json({ message: "Login successfully" });
         } else {
           res.status(400).json({ message: "Wrong email or password" });
         }
@@ -43,4 +43,4 @@ const login = (req, res) => {
     });
 };
 
-module.exports = { register,login };
+module.exports = { register, login };
