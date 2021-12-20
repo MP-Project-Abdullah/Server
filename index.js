@@ -26,9 +26,12 @@ const commentRouter = require("./routers/route/comment");
 app.use(commentRouter);
 
 // Package
-// Comment
 const packagetRouter = require("./routers/route/package");
 app.use(packagetRouter);
+
+// Story
+const storyRouter = require("./routers/route/story");
+app.use(storyRouter);
 
 // PORT
 const PORT = process.env.PORT;
