@@ -31,20 +31,37 @@ const newStory = (req, res) => {
   }
 };
 
-// Get all story
-const getStory = (req, res) => {
-    storyModel
-      .find({})
-      .then((result) => {
-        if (result) {
-          res.send(result);
-        } else {
-          res.status(404).json({ message: "Not found" });
-        }
-      })
-      .catch((err) => {
-        res.status(400).json(err);
-      });
-  };
+// Get all storys
+const getStorys = (req, res) => {
+  storyModel
+    .find({})
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(404).json({ message: "Not found" });
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
 
-module.exports = { newStory,getStory };
+// Get on story
+const getStory = (req, res) => {
+  const { _id } = req.params;
+  storyModel
+    .findOne({ _id: _id })
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(404).json({ message: "Not found" });
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+module.exports = { newStory, getStorys ,getStory};

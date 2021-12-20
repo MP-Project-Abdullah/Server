@@ -1,12 +1,13 @@
 const express = require("express");
 const storyRouter = express.Router();
 
-const { newStory, getStory } = require("../controller/story");
+const { newStory, getStorys, getStory } = require("../controller/story");
 
 // Create new story
 storyRouter.post("/newStory/:_id", newStory);
 
 // Get all storys
-storyRouter.get("/storys", getStory);
+storyRouter.get("/storys", getStorys);
+storyRouter.get("/story/:_id", getStory);
 
 module.exports = storyRouter;
