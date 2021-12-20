@@ -1,17 +1,21 @@
 const userModel = require("../../db/model/user");
-
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const secret = process.env.SECRET_KEY;
+const salt = Number(process.env.SALT);
+
 
 // Create new user
-const register = (req, res) => {
+const register = async (req, res) => {
   const { email, name, username, password } = req.body;
+  const savedPassword = await bcrypt.hash(password, salt);
 
   try {
     const newUser = userModel({
       email,
       name,
       username,
-      password,
+      password: savedPassword,
     });
     newUser
       .save()
@@ -32,16 +36,29 @@ const login = (req, res) => {
 
   userModel
     .findOne({ $or: [{ email: data }, { username: data }] })
-    .then((result) => {
+    .then(async (result) => {
       if (result) {
-        if (password === result.password) {
-          res.status(200).json({ message: "Login successfully" });
+        if (result.email == data || result.username == data) {
+          const savedPassword = await bcrypt.compare(password, result.password);
+          const payload = {
+            _id: result._id,
+            role: result.role,
+          };
+          if (savedPassword) {
+            let token = jwt.sign(payload, secret);
+            res.status(200).json({ result, token });
+          } else {
+            res.status(200).json("Wrong email or password");
+          }
         } else {
-          res.status(400).json({ message: "Wrong email or password" });
+          res.status(200).json("Wrong email or password");
         }
       } else {
-        res.status(404).json({ message: "Not found" });
+        res.status(200).json("not found");
       }
+    })
+    .catch((err) => {
+      res.send(err);
     });
 };
 
@@ -143,3 +160,16 @@ const updateUser = (req, res) => {
 };
 
 module.exports = { register, login, softDel, getUsers, getUser, updateUser };
+
+// .then((result) => {
+//   if (result) {
+
+//     if (password === result.password) {
+//       res.status(200).json({ message: "Login successfully" });
+//     } else {
+//       res.status(400).json({ message: "Wrong email or password" });
+//     }
+//   } else {
+//     res.status(404).json({ message: "Not found" });
+//   }
+// });
