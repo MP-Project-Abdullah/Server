@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const secret = process.env.SECRET_KEY;
 const salt = Number(process.env.SALT);
 const nodemailer = require("nodemailer");
+
 // Create new user
 const register = async (req, res) => {
   const { email, username, password, name } = req.body;

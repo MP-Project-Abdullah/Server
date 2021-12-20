@@ -11,6 +11,7 @@ const story = new mongoose.Schema({
   desc1: { type: String },
   desc2: { type: String },
   desc3: { type: String },
+  time: { type: Date },
 });
 
 module.exports = mongoose.model("Story", story);
