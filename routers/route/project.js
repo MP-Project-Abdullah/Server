@@ -6,6 +6,7 @@ const {
   getProjects,
   softDel,
   getProject,
+  updateProject
 } = require("../controller/project");
 
 // Create new project
@@ -19,5 +20,8 @@ projectRouter.get("/project/:id", getProject);
 
 // Delete project ( Soft )
 projectRouter.put("/deleteProject/:_id", softDel);
+
+// update info project
+projectRouter.put("/updateProject/:_id", updateProject);
 
 module.exports = projectRouter;

@@ -2,7 +2,28 @@ const projectModel = require("../../db/model/project");
 
 // Create new project
 const newProject = (req, res) => {
-  const { describe, title, kind, deadline, goal, img, desc, time } = req.body;
+  const {
+    describe,
+    title,
+    kind,
+    deadline,
+    goal,
+    img,
+    desc,
+    location,
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    desc1,
+    desc2,
+    desc3,
+    desc4,
+    desc5,
+    desc6,
+  } = req.body;
   const { _id } = req.params;
   try {
     const newProject = new projectModel({
@@ -15,6 +36,19 @@ const newProject = (req, res) => {
       desc,
       time: Date(),
       user: _id,
+      location,
+      img1,
+      img2,
+      img3,
+      img4,
+      img5,
+      img6,
+      desc1,
+      desc2,
+      desc3,
+      desc4,
+      desc5,
+      desc6,
     });
     newProject
       .save()
@@ -103,4 +137,80 @@ const getProject = (req, res) => {
     });
 };
 
-module.exports = { newProject, getProjects, softDel, getProject };
+// Update info project
+const updateProject = (req, res) => {
+  const { _id } = req.params;
+  const {
+    name,
+    avatar,
+    describe,
+    title,
+    kind,
+    deadline,
+    goal,
+    img,
+    desc,
+    location,
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+    img6,
+    desc1,
+    desc2,
+    desc3,
+    desc4,
+    desc5,
+    desc6,
+  } = req.body;
+  projectModel
+    .findOneAndUpdate(
+      { _id: _id },
+      {
+        $set: {
+          name,
+          avatar,
+          describe,
+          title,
+          kind,
+          deadline,
+          goal,
+          img,
+          desc,
+          location,
+          img1,
+          img2,
+          img3,
+          img4,
+          img5,
+          img6,
+          desc1,
+          desc2,
+          desc3,
+          desc4,
+          desc5,
+          desc6,
+        },
+      },
+      { new: true }
+    )
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(404).send("project not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+module.exports = {
+  newProject,
+  getProjects,
+  softDel,
+  getProject,
+  updateProject,
+};
