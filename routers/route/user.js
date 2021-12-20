@@ -1,5 +1,7 @@
 const express = require("express");
 const userRouter = express.Router();
+const authentication = require("../middlewear/authentication");
+const authorization = require("../middlewear/authorization");
 
 const {
   register,
@@ -24,10 +26,10 @@ userRouter.get("/users", getUsers);
 userRouter.get("/user/:id", getUser);
 
 // Soft delete user
-userRouter.put("/deleteUser/:_id", softDel);
+userRouter.put("/deleteUser/:_id", authentication, authorization, softDel);
 
 // Update name and avatar user
-userRouter.put("/updateUser/:_id", updateUser);
+userRouter.put("/updateUser/:_id", authentication, updateUser);
 
 // Activate user
 userRouter.put("/activate/:_id", activatetUser);

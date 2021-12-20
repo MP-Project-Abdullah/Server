@@ -211,9 +211,26 @@ const updateProject = (req, res) => {
 const approvedProject = (req, res) => {
   const { _id } = req.params;
   projectModel
+    .findOneAndUpdate({ _id: _id }, { $set: { approved: true } }, { new: true })
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(404).send("project not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+// Reject project
+const rejectProject = (req, res) => {
+  const { _id } = req.params;
+  projectModel
     .findOneAndUpdate(
       { _id: _id },
-      { $set: { approved: true } },
+      { $set: { approved: false } },
       { new: true }
     )
     .then((result) => {
@@ -235,4 +252,5 @@ module.exports = {
   getProject,
   updateProject,
   approvedProject,
+  rejectProject
 };

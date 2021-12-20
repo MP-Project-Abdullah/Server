@@ -10,10 +10,14 @@ const {
 } = require("../controller/comment");
 
 // Create new comment
-commentRouter.post("/newComment/:userId/:projectId", newComment);
+commentRouter.post(
+  "/newComment/:userId/:projectId",
+  authentication,
+  newComment
+);
 
 // Delete comment
-commentRouter.delete("/deleteComment/:_id", deleteCommet);
+commentRouter.delete("/deleteComment/:_id", authentication, deleteCommet);
 
 // Get one comment
 commentRouter.get("/comment/:_id", getComment);
