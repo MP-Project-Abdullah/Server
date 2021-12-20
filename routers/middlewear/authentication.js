@@ -4,7 +4,6 @@ require("dotenv").config();
 const secret = process.env.SECRET_KEY;
 const authentication = (req, res, next) => {
   try {
-    console.log(req.headers,"HERE");
     if (!req.headers.authorization) {
       return res.status(403).json({ message: "forbidden" });
     } else {

@@ -160,16 +160,3 @@ const updateUser = (req, res) => {
 };
 
 module.exports = { register, login, softDel, getUsers, getUser, updateUser };
-
-// .then((result) => {
-//   if (result) {
-
-//     if (password === result.password) {
-//       res.status(200).json({ message: "Login successfully" });
-//     } else {
-//       res.status(400).json({ message: "Wrong email or password" });
-//     }
-//   } else {
-//     res.status(404).json({ message: "Not found" });
-//   }
-// });

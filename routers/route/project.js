@@ -1,5 +1,7 @@
 const express = require("express");
 const projectRouter = express.Router();
+const authentication = require("../middlewear/authentication");
+const authorization = require("../middlewear/authorization");
 
 const {
   newProject,
@@ -10,7 +12,7 @@ const {
 } = require("../controller/project");
 
 // Create new project
-projectRouter.post("/newProject/:_id", newProject);
+projectRouter.post("/newProject/:_id",authentication, newProject);
 
 // Get all projects
 projectRouter.get("/projects", getProjects);
