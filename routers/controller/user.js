@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const secret = process.env.SECRET_KEY;
 const salt = Number(process.env.SALT);
 
-
 // Create new user
 const register = async (req, res) => {
   const { email, name, username, password } = req.body;
@@ -159,4 +158,28 @@ const updateUser = (req, res) => {
     });
 };
 
-module.exports = { register, login, softDel, getUsers, getUser, updateUser };
+const activatetUser = (req, res) => {
+  const { _id } = req.params;
+  userModel
+    .findOneAndUpdate({ _id: _id }, { $set: { activate: true } }, { new: true })
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(400).send("Users not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+module.exports = {
+  register,
+  login,
+  softDel,
+  getUsers,
+  getUser,
+  updateUser,
+  activatetUser,
+};
