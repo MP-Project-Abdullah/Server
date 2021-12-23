@@ -2,6 +2,9 @@ const express = require("express");
 const userRouter = express.Router();
 const authentication = require("../middlewear/authentication");
 const authorization = require("../middlewear/authorization");
+const popuptools = require("popup-tools");
+require("../middlewear/passport");
+const passport = require("passport");
 
 const {
   register,
@@ -33,5 +36,20 @@ userRouter.put("/updateUser/:_id", authentication, updateUser);
 
 // Activate user
 userRouter.put("/activate/:_id", activatetUser);
+
+
+// Google auth
+userRouter.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["email", "profile"] })
+);
+userRouter.get(
+  "/auth/google/callback",
+  passport.authenticate("google"),
+  (req, res) => {
+    res.end(popuptools.popupResponse(req.user));
+  }
+);
+
 
 module.exports = userRouter;

@@ -19,6 +19,8 @@ projectRouter.post("/newProject/:_id", newProject);
 
 // Get all projects
 projectRouter.get("/projects", getProjects);
+
+// Get project by kind
 projectRouter.get("/projectsKind/:kind", getProjectsByKind);
 
 // Get one project by id
