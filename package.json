@@ -12,7 +12,8 @@
     "mongoose": "^6.1.2",
     "nodemailer": "^6.7.2",
     "passport": "^0.5.2",
-    "popup-tools": "^1.0.2"
+    "popup-tools": "^1.0.2",
+    "react-icons": "^4.3.1"
   },
   "devDependencies": {},
   "scripts": {

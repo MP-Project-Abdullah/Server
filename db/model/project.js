@@ -7,7 +7,7 @@ const project = new mongoose.Schema({
   describe: { type: String, required: true },
   title: { type: String, required: true },
   kind: { type: String, required: true },
-  deadline: { type: String, required: true },
+  deadline: { type: String, required: true, default: 0 },
   goal: { type: Number, required: true },
   img: { type: String, required: true },
   desc: { type: String, required: true },

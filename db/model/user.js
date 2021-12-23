@@ -10,7 +10,11 @@ const user = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, require: true },
-  avatar: { type: String },
+  avatar: {
+    type: String,
+    default:
+      "https://previews.123rf.com/images/kritchanut/kritchanut1406/kritchanut140600093/29213195-male-silhouette-avatar-profile-picture.jpg",
+  },
   activate: { type: Boolean, default: false },
   activateCode: { type: String },
   resetPass: { type: Boolean, default: false },
