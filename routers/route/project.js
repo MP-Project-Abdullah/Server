@@ -11,13 +11,17 @@ const {
   updateProject,
   approvedProject,
   rejectProject,
+  getProjectsByKind,
 } = require("../controller/project");
 
 // Create new project
-projectRouter.post("/newProject/:_id", authentication, newProject);
+projectRouter.post("/newProject/:_id", newProject);
 
 // Get all projects
 projectRouter.get("/projects", getProjects);
+
+// Get project by kind
+projectRouter.get("/projectsKind/:kind", getProjectsByKind);
 
 // Get one project by id
 projectRouter.get("/project/:id", getProject);

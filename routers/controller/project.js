@@ -79,6 +79,23 @@ const getProjects = (req, res) => {
     });
 };
 
+// Get projects by kind
+const getProjectsByKind = (req, res) => {
+  const { kind } = req.params;
+  projectModel
+    .find({ kind: kind })
+    .then((result) => {
+      if (result) {
+        res.status(200).json(result);
+      } else {
+        res.status(400).send("projects not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
 // Toggle delete project ( soft )
 const softDel = (req, res) => {
   const { _id } = req.params;
@@ -252,5 +269,6 @@ module.exports = {
   getProject,
   updateProject,
   approvedProject,
-  rejectProject
+  rejectProject,
+  getProjectsByKind,
 };
