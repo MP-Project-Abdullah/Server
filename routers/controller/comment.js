@@ -57,4 +57,20 @@ const getComment = (req, res) => {
   }
 };
 
-module.exports = { newComment, deleteCommet,getComment };
+// Get one comment
+const getAllComment = (req, res) => {
+  const { idProject } = req.params;
+  try {
+    commentModel.find({ project: idProject }).populate("user").then((result) => {
+      if (result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).send("Comments not found");
+      }
+    });
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+module.exports = { newComment, deleteCommet, getComment,getAllComment };

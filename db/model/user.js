@@ -21,6 +21,7 @@ const user = new mongoose.Schema({
   resetCode: { type: String },
   isDel: { type: Boolean, default: false },
   spam: { type: Number },
+  bio: { type: String ,default:"Bio is empty"},
 });
 
 module.exports = mongoose.model("User", user);
