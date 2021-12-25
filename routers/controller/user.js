@@ -206,6 +206,95 @@ const activatetUser = (req, res) => {
     });
 };
 
+const resetPass = async (req, res) => {
+  const { email } = req.params;
+  const { password } = req.body;
+  const savedPassword = await bcrypt.hash(password, salt);
+
+  userModel
+    .findOneAndUpdate(
+      { email: email },
+      { $set: { password: savedPassword } },
+      { new: true }
+    )
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(400).send("Users not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+const sendCodeResetPass = (req, res) => {
+  const { email } = req.params;
+  let code = "";
+  const num = "0123456789";
+  for (let i = 0; i < 4; i++) {
+    code += num.charAt(Math.floor(Math.random() * num.length));
+  }
+  userModel
+    .findOneAndUpdate(
+      { email: email },
+      { $set: { resetPass: true, resetCode: code } }
+    )
+    .then(async (result) => {
+      try {
+        if (result) {
+          let mailTransporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
+            requireTLS: true,
+            auth: {
+              user: "w08d04socialmedia@gmail.com",
+              pass: "Aa112233",
+            },
+          });
+          let mail = {
+            from: "w08d04socialmedia@gmail.com",
+            to: result.email,
+            subject: "Reset your passwor",
+            text: `Please enter this code ${code} ,Thank you!`,
+          };
+          await mailTransporter.sendMail(mail, (err, data) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log("Email sent");
+
+              res.status(200).json(result);
+            }
+          });
+        }
+      } catch (error) {
+        console.log("ererererer", error);
+      }
+
+      // res.status(200).json(res);
+    })
+    .catch((err) => console.log(err));
+};
+
+const getUserByEmail = (req, res) => {
+  const { email } = req.params;
+  userModel
+    .find({ email: email })
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(400).send("Users not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
 module.exports = {
   register,
   login,
@@ -214,4 +303,7 @@ module.exports = {
   getUser,
   updateUser,
   activatetUser,
+  resetPass,
+  sendCodeResetPass,
+  getUserByEmail
 };

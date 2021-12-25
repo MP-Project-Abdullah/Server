@@ -14,6 +14,9 @@ const {
   getUser,
   updateUser,
   activatetUser,
+  resetPass,
+  sendCodeResetPass,
+  getUserByEmail,
 } = require("../controller/user");
 
 // Create new user
@@ -37,6 +40,10 @@ userRouter.put("/updateUser/:_id", updateUser);
 // Activate user
 userRouter.put("/activate/:_id", activatetUser);
 
+// Reset password
+userRouter.get("/userEmail/:email", getUserByEmail);
+userRouter.post("/resetEmailCode/:email", sendCodeResetPass);
+userRouter.put("/reset/:email", resetPass);
 
 // Google auth
 userRouter.get(
@@ -50,6 +57,5 @@ userRouter.get(
     res.end(popuptools.popupResponse(req.user));
   }
 );
-
 
 module.exports = userRouter;
