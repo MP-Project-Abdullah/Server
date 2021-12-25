@@ -7,12 +7,13 @@ const {
   newComment,
   deleteCommet,
   getComment,
+  getAllComment,
 } = require("../controller/comment");
 
 // Create new comment
 commentRouter.post(
   "/newComment/:userId/:projectId",
-  authentication,
+  // authentication,
   newComment
 );
 
@@ -21,5 +22,6 @@ commentRouter.delete("/deleteComment/:_id", authentication, deleteCommet);
 
 // Get one comment
 commentRouter.get("/comment/:_id", getComment);
+commentRouter.get("/allComment/:idProject", getAllComment);
 
 module.exports = commentRouter;

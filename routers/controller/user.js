@@ -171,11 +171,11 @@ const softDel = (req, res) => {
 // Update info user
 const updateUser = (req, res) => {
   const { _id } = req.params;
-  const { name, avatar } = req.body;
+  const { name, bio } = req.body;
   userModel
     .findOneAndUpdate(
       { _id: _id },
-      { $set: { name: name, avatar: avatar } },
+      { $set: { name: name, bio: bio } },
       { new: true }
     )
     .then((result) => {
