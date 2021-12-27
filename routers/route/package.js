@@ -9,6 +9,6 @@ const { newPackage, getPackages } = require("../controller/package");
 packagetRouter.post("/newPackage/:userId/:projectId", newPackage);
 
 // Get packages by project id
-packagetRouter.get("/projects/:projectId", getPackages);
+packagetRouter.get("/packages/:projectId", getPackages);
 
 module.exports = packagetRouter;
