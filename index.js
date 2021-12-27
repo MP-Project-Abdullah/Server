@@ -29,6 +29,9 @@ app.use(commentRouter);
 const packagetRouter = require("./routers/route/package");
 app.use(packagetRouter);
 
+const paymentRouter = require("./routers/route/payment");
+app.use(paymentRouter);
+
 // Story
 const storyRouter = require("./routers/route/story");
 app.use(storyRouter);

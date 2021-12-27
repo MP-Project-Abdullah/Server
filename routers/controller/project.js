@@ -172,15 +172,8 @@ const updateProject = (req, res) => {
           kind,
           deadline,
           goal,
-          // img,
           desc,
           location,
-          // img1,
-          // img2,
-          // img3,
-          // img4,
-          // img5,
-          // img6,
           desc1,
           desc2,
           desc3,
@@ -242,6 +235,27 @@ const rejectProject = (req, res) => {
     });
 };
 
+// Update pledged project
+const updatePledged = (req, res) => {
+  const { projectId, donate } = req.params;
+  projectModel
+    .findOneAndUpdate(
+      { _id: projectId },
+      { $inc: { pledged: donate } },
+      { new: true }
+    )
+    .then((result) => {
+      if (result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).send("project not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
 module.exports = {
   newProject,
   getProjects,
@@ -251,4 +265,5 @@ module.exports = {
   approvedProject,
   rejectProject,
   getProjectsByKind,
+  updatePledged,
 };
