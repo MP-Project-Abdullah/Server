@@ -12,6 +12,7 @@ const {
   approvedProject,
   rejectProject,
   getProjectsByKind,
+  updatePledged,
 } = require("../controller/project");
 
 // Create new project
@@ -36,6 +37,9 @@ projectRouter.put(
 
 // update info project
 projectRouter.put("/updateProject/:_id", authentication, updateProject);
+
+// Update pledged project
+projectRouter.put("/updateProject/:projectId/:donate", updatePledged);
 
 // Approved project
 projectRouter.put(
