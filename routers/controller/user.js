@@ -1,9 +1,11 @@
 const userModel = require("../../db/model/user");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
+
 const secret = process.env.SECRET_KEY;
 const salt = Number(process.env.SALT);
-const nodemailer = require("nodemailer");
+
 
 // Create new user
 const register = async (req, res) => {
@@ -190,6 +192,7 @@ const updateUser = (req, res) => {
     });
 };
 
+// Activate user
 const activatetUser = (req, res) => {
   const { _id } = req.params;
   userModel
@@ -206,6 +209,7 @@ const activatetUser = (req, res) => {
     });
 };
 
+// Reset user password
 const resetPass = async (req, res) => {
   const { email } = req.params;
   const { password } = req.body;
@@ -229,6 +233,7 @@ const resetPass = async (req, res) => {
     });
 };
 
+// Send code to the user email to reset hes password
 const sendCodeResetPass = (req, res) => {
   const { email } = req.params;
   let code = "";
@@ -279,6 +284,7 @@ const sendCodeResetPass = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+// Get user by email
 const getUserByEmail = (req, res) => {
   const { email } = req.params;
   userModel
@@ -305,5 +311,5 @@ module.exports = {
   activatetUser,
   resetPass,
   sendCodeResetPass,
-  getUserByEmail
+  getUserByEmail,
 };

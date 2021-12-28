@@ -1,5 +1,5 @@
 const stripe = require("stripe")(
-    "sk_test_51KBEWgBlTfbXgfFBX3TbmRbOloCRF6jfUWgg5dS2ETPBtj4zmzHw8iJKxspmVP0WxhObFMlXNYpWLMxy1eGnqFHI00zc4fEgKn"
+  "sk_test_51KBEWgBlTfbXgfFBX3TbmRbOloCRF6jfUWgg5dS2ETPBtj4zmzHw8iJKxspmVP0WxhObFMlXNYpWLMxy1eGnqFHI00zc4fEgKn"
 );
 
 const calculateOrderAmount = (items) => {
@@ -9,7 +9,7 @@ const calculateOrderAmount = (items) => {
   return 1400;
 };
 
-
+// Payment
 const payment = async (req, res) => {
   const { items } = req.body;
 

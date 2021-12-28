@@ -150,6 +150,7 @@ const softDel = (req, res) => {
   }
 };
 
+// Get one project
 const getProject = (req, res) => {
   const { id } = req.params;
   projectModel
@@ -166,6 +167,7 @@ const getProject = (req, res) => {
     });
 };
 
+// Get all projects not approved
 const getProjectNotApproved = (req, res) => {
   projectModel
     .find({ $and: [{ approved: false }, { reject: false }] })

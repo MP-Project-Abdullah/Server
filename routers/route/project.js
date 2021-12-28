@@ -52,6 +52,8 @@ projectRouter.put("/aprooved/:_id", approvedProject);
 // Reject project
 projectRouter.put("/reject/:_id", rejectProject);
 
+
+// Get all projects not approved
 projectRouter.get("/projectsNotApproved", getProjectNotApproved);
 
 module.exports = projectRouter;

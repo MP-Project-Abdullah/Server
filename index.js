@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 // Routers
+
 //User
 const userRouter = require("./routers/route/user");
 app.use(userRouter);
@@ -29,6 +30,7 @@ app.use(commentRouter);
 const packagetRouter = require("./routers/route/package");
 app.use(packagetRouter);
 
+// Payment
 const paymentRouter = require("./routers/route/payment");
 app.use(paymentRouter);
 
@@ -36,6 +38,7 @@ app.use(paymentRouter);
 const storyRouter = require("./routers/route/story");
 app.use(storyRouter);
 
+// User packages and donations
 const packagesUserRouter = require("./routers/route/userPackages");
 app.use(packagesUserRouter);
 
