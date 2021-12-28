@@ -54,12 +54,29 @@ const newProject = (req, res) => {
 // Get projects
 const getProjects = (req, res) => {
   projectModel
-    .find({})
+    .find({ $and: [{ approved: true }, { isDel: false }, { reject: false }] })
     .then((result) => {
       if (result) {
-        res.send(result);
+        res.status(200).json(result);
       } else {
         res.status(400).send("projects not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+// Get user projects
+const getUserProject = (req, res) => {
+  const { userId } = req.params;
+  projectModel
+    .find({ user: userId })
+    .then((result) => {
+      if (result) {
+        res.status(200).json(result);
+      } else {
+        res.status(400).send("Bad request");
       }
     })
     .catch((err) => {
@@ -71,7 +88,14 @@ const getProjects = (req, res) => {
 const getProjectsByKind = (req, res) => {
   const { kind } = req.params;
   projectModel
-    .find({ kind: kind })
+    .find({
+      $and: [
+        { kind: kind },
+        { approved: true },
+        { isDel: false },
+        { reject: false },
+      ],
+    })
     .then((result) => {
       if (result) {
         res.status(200).json(result);
@@ -126,10 +150,27 @@ const softDel = (req, res) => {
   }
 };
 
+// Get one project
 const getProject = (req, res) => {
   const { id } = req.params;
   projectModel
     .find({ _id: id })
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(400).send("Users not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+// Get all projects not approved
+const getProjectNotApproved = (req, res) => {
+  projectModel
+    .find({ $and: [{ approved: false }, { reject: false }] })
     .then((result) => {
       if (result) {
         res.send(result);
@@ -218,11 +259,7 @@ const approvedProject = (req, res) => {
 const rejectProject = (req, res) => {
   const { _id } = req.params;
   projectModel
-    .findOneAndUpdate(
-      { _id: _id },
-      { $set: { approved: false } },
-      { new: true }
-    )
+    .findOneAndUpdate({ _id: _id }, { $set: { reject: true } }, { new: true })
     .then((result) => {
       if (result) {
         res.send(result);
@@ -266,4 +303,6 @@ module.exports = {
   rejectProject,
   getProjectsByKind,
   updatePledged,
+  getUserProject,
+  getProjectNotApproved,
 };

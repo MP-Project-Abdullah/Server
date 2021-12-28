@@ -50,6 +50,8 @@ userRouter.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
 );
+
+// Google auth
 userRouter.get(
   "/auth/google/callback",
   passport.authenticate("google"),
