@@ -36,6 +36,9 @@ app.use(paymentRouter);
 const storyRouter = require("./routers/route/story");
 app.use(storyRouter);
 
+const packagesUserRouter = require("./routers/route/userPackages");
+app.use(packagesUserRouter);
+
 // PORT
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
