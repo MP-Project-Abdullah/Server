@@ -1,11 +1,24 @@
 const userPackagesModel = require("../../db/model/userPackages");
 
 const createUserPackages = (req, res) => {
-  const { packageId, userId } = req.params;
+  const { packageId, userId,donate } = req.params;
 
   const newUserPackage = new userPackagesModel({
     package: packageId,
     user: userId,
+    total: donate,
+  });
+  newUserPackage.save().then((result) => {
+    res.status(200).json(result);
+  });
+};
+
+const createUserPackage = (req, res) => {
+  const {  userId,donate } = req.params;
+
+  const newUserPackage = new userPackagesModel({
+    user: userId,
+    total: donate,
   });
   newUserPackage.save().then((result) => {
     res.status(200).json(result);
@@ -30,8 +43,8 @@ const getUserPackages = (req, res) => {
     .find({ user: userId })
     .populate("package")
     .then((result) => {
-      res.status(200).json(result[0].package);
+      res.status(200).json(result);
     });
 };
 
-module.exports = { createUserPackages, getUserPackage, getUserPackages };
+module.exports = { createUserPackages,createUserPackage, getUserPackage, getUserPackages };

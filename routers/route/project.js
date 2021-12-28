@@ -13,6 +13,8 @@ const {
   rejectProject,
   getProjectsByKind,
   updatePledged,
+  getUserProject,
+  getProjectNotApproved,
 } = require("../controller/project");
 
 // Create new project
@@ -20,6 +22,9 @@ projectRouter.post("/newProject/:_id", newProject);
 
 // Get all projects
 projectRouter.get("/projects", getProjects);
+
+// Get all user projects
+projectRouter.get("/userProjects/:userId", getUserProject);
 
 // Get project by kind
 projectRouter.get("/projectsKind/:kind", getProjectsByKind);
@@ -42,14 +47,11 @@ projectRouter.put("/updateProject/:_id", authentication, updateProject);
 projectRouter.put("/updateProject/:projectId/:donate", updatePledged);
 
 // Approved project
-projectRouter.put(
-  "/aprooved/:_id",
-  authentication,
-  authorization,
-  approvedProject
-);
+projectRouter.put("/aprooved/:_id", approvedProject);
 
 // Reject project
-projectRouter.put("/reject/:_id", authentication, authorization, rejectProject);
+projectRouter.put("/reject/:_id", rejectProject);
+
+projectRouter.get("/projectsNotApproved", getProjectNotApproved);
 
 module.exports = projectRouter;
