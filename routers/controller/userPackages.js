@@ -1,9 +1,8 @@
 const userPackagesModel = require("../../db/model/userPackages");
 
-
-// Create packages for the user after he buy the package 
+// Create packages for the user after he buy the package
 const createUserPackages = (req, res) => {
-  const { packageId, userId,donate } = req.params;
+  const { packageId, userId, donate } = req.params;
 
   const newUserPackage = new userPackagesModel({
     package: packageId,
@@ -17,7 +16,7 @@ const createUserPackages = (req, res) => {
 
 // Create packages for the user after he buy the package
 const createUserDonate = (req, res) => {
-  const {  userId,donate } = req.params;
+  const { userId, donate } = req.params;
 
   const newUserPackage = new userPackagesModel({
     user: userId,
@@ -40,7 +39,7 @@ const getUserPackage = (req, res) => {
     });
 };
 
-// Get user donations 
+// Get user donations
 const getUserDonations = (req, res) => {
   const { userId } = req.params;
 
@@ -52,4 +51,9 @@ const getUserDonations = (req, res) => {
     });
 };
 
-module.exports = { createUserPackages,createUserDonate, getUserPackage, getUserDonations };
+module.exports = {
+  createUserPackages,
+  createUserDonate,
+  getUserPackage,
+  getUserDonations,
+};
