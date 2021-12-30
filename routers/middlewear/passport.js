@@ -46,6 +46,7 @@ passport.use(
             username: username,
             avatar: profile._json.picture,
             activate: true,
+            name: username,
           });
 
           newUser.save().then(async (result) => {

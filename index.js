@@ -42,6 +42,10 @@ app.use(storyRouter);
 const packagesUserRouter = require("./routers/route/userPackages");
 app.use(packagesUserRouter);
 
+// User notifications
+const notificationsRouter = require("./routers/route/notifications");
+app.use(notificationsRouter);
+
 // PORT
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
