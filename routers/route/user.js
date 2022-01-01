@@ -17,6 +17,7 @@ const {
   resetPass,
   sendCodeResetPass,
   getUserByEmail,
+  contactUs,
 } = require("../controller/user");
 
 // Create new user
@@ -30,6 +31,9 @@ userRouter.get("/users", getUsers);
 
 // Get one user by id
 userRouter.get("/user/:id", getUser);
+
+// Contact us
+userRouter.post("/sendQuestion", contactUs);
 
 // Soft delete user
 userRouter.put("/deleteUser/:_id", authentication, authorization, softDel);

@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 const secret = process.env.SECRET_KEY;
 const salt = Number(process.env.SALT);
 
-
 // Create new user
 const register = async (req, res) => {
   const { email, username, password, name } = req.body;
@@ -173,11 +172,11 @@ const softDel = (req, res) => {
 // Update info user
 const updateUser = (req, res) => {
   const { _id } = req.params;
-  const { name, bio } = req.body;
+  const { name, bio, avatar } = req.body;
   userModel
     .findOneAndUpdate(
       { _id: _id },
-      { $set: { name: name, bio: bio } },
+      { $set: { name: name, bio: bio, avatar: avatar } },
       { new: true }
     )
     .then((result) => {
@@ -278,8 +277,6 @@ const sendCodeResetPass = (req, res) => {
       } catch (error) {
         console.log("ererererer", error);
       }
-
-      // res.status(200).json(res);
     })
     .catch((err) => console.log(err));
 };
@@ -301,6 +298,36 @@ const getUserByEmail = (req, res) => {
     });
 };
 
+// Contact us
+const contactUs = async (req, res) => {
+  const { firstName, lastName, email, question } = req.body;
+  let mailTransporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    requireTLS: true,
+    auth: {
+      user: "w08d04socialmedia@gmail.com",
+      pass: "Aa112233",
+    },
+  });
+  let mail = {
+    from: "w08d04socialmedia@gmail.com",
+    to: "w08d04socialmedia@gmail.com",
+    subject: `Question from ${firstName} ${lastName}`,
+    text: `${question} from: ${email}`,
+  };
+  await mailTransporter.sendMail(mail, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Email sent");
+
+      res.status(200).json(result);
+    }
+  });
+};
+
 module.exports = {
   register,
   login,
@@ -312,4 +339,5 @@ module.exports = {
   resetPass,
   sendCodeResetPass,
   getUserByEmail,
+  contactUs
 };
