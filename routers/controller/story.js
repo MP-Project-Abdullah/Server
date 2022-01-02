@@ -2,14 +2,13 @@ const storyModel = require("../../db/model/successStory");
 
 // Create new project
 const newStory = (req, res) => {
-  const { desc, img, describe, title, desc1, desc2, desc3, url } = req.body;
+  const { desc, describe, title, desc1, desc2, desc3, url } = req.body;
   const { _id } = req.params;
   try {
     const newStory = new storyModel({
       desc,
       title,
       describe,
-      img,
       desc1,
       desc2,
       desc3,
@@ -23,9 +22,11 @@ const newStory = (req, res) => {
         res.status(200).json(result);
       })
       .catch((err) => {
+        console.log(err);
         res.json(err);
       });
   } catch (error) {
+    console.log(error);
     res.send(error.message);
   }
 };

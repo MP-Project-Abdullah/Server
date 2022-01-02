@@ -39,7 +39,7 @@ userRouter.post("/sendQuestion", contactUs);
 userRouter.put("/deleteUser/:_id", authentication, authorization, softDel);
 
 // Update name and avatar user
-userRouter.put("/updateUser/:_id", updateUser);
+userRouter.put("/updateUser/:_id", authentication, updateUser);
 
 // Activate user
 userRouter.put("/activate/:_id", activatetUser);
