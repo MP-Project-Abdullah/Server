@@ -18,7 +18,7 @@ const {
 } = require("../controller/project");
 
 // Create new project
-projectRouter.post("/newProject/:_id", newProject);
+projectRouter.post("/newProject/:_id", authentication, newProject);
 
 // Get all projects
 projectRouter.get("/projects", getProjects);
@@ -33,13 +33,17 @@ projectRouter.get("/projectsKind/:kind", getProjectsByKind);
 projectRouter.get("/project/:id", getProject);
 
 // Delete project ( Soft )
-projectRouter.put("/deleteProject/:_id", softDel);
+projectRouter.put("/deleteProject/:_id", authentication, softDel);
 
 // update info project
 projectRouter.put("/updateProject/:_id", authentication, updateProject);
 
 // Update pledged project
-projectRouter.put("/updateProject/:projectId/:donate", updatePledged);
+projectRouter.put(
+  "/updateProject/:projectId/:donate",
+  authentication,
+  updatePledged
+);
 
 // Approved project
 projectRouter.put("/aprooved/:_id", approvedProject);

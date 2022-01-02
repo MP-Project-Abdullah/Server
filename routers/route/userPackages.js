@@ -1,7 +1,5 @@
 const express = require("express");
 const packagesUserRouter = express.Router();
-const authentication = require("../middlewear/authentication");
-const authorization = require("../middlewear/authorization");
 
 const {
   createUserPackages,
