@@ -33,12 +33,7 @@ projectRouter.get("/projectsKind/:kind", getProjectsByKind);
 projectRouter.get("/project/:id", getProject);
 
 // Delete project ( Soft )
-projectRouter.put(
-  "/deleteProject/:_id",
-  authentication,
-  authorization,
-  softDel
-);
+projectRouter.put("/deleteProject/:_id", softDel);
 
 // update info project
 projectRouter.put("/updateProject/:_id", authentication, updateProject);
@@ -51,7 +46,6 @@ projectRouter.put("/aprooved/:_id", approvedProject);
 
 // Reject project
 projectRouter.put("/reject/:_id", rejectProject);
-
 
 // Get all projects not approved
 projectRouter.get("/projectsNotApproved", getProjectNotApproved);
