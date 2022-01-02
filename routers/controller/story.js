@@ -33,7 +33,23 @@ const newStory = (req, res) => {
 // Get all storys
 const getStories = (req, res) => {
   storyModel
-    .find({})
+    .find({ approve: true })
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(404).json({ message: "Not found" });
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+// Get all stories not approved
+const getStoriesNotApproved = (req, res) => {
+  storyModel
+    .find({ $and: [{ approve: false }, { reject: false }] })
     .then((result) => {
       if (result) {
         res.send(result);
@@ -63,4 +79,44 @@ const getStory = (req, res) => {
     });
 };
 
-module.exports = { newStory, getStories, getStory };
+const approvedStory = (req, res) => {
+  const { _id } = req.params;
+  storyModel
+    .findOneAndUpdate({ _id: _id }, { $set: { approve: true } }, { new: true })
+    .then((result) => {
+      if (result) {
+        res.status(200).json(result);
+      } else {
+        res.status(404).send("story not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+// Reject project
+const rejectStory = (req, res) => {
+  const { _id } = req.params;
+  storyModel
+    .findOneAndUpdate({ _id: _id }, { $set: { reject: true } }, { new: true })
+    .then((result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        res.status(404).send("story not found");
+      }
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+};
+
+module.exports = {
+  newStory,
+  getStories,
+  getStory,
+  getStoriesNotApproved,
+  approvedStory,
+  rejectStory,
+};

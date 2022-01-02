@@ -11,6 +11,8 @@ const story = new mongoose.Schema({
   desc2: { type: String },
   desc3: { type: String },
   time: { type: Date },
+  approve: { Type: Boolean, default: false },
+  reject: { Type: Boolean, default: false },
 });
 
 module.exports = mongoose.model("Story", story);
