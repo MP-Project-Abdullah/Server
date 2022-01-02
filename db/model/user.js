@@ -13,7 +13,7 @@ const user = new mongoose.Schema({
   avatar: {
     type: String,
     default:
-      "https://previews.123rf.com/images/kritchanut/kritchanut1406/kritchanut140600093/29213195-male-silhouette-avatar-profile-picture.jpg",
+      "https://baselalhwaikem.sa/wp-content/uploads/2021/11/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpeg",
   },
   activate: { type: Boolean, default: false },
   activateCode: { type: String },
