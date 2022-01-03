@@ -46,7 +46,11 @@ userRouter.put("/activate/:_id", activatetUser);
 
 // Reset password
 userRouter.get("/userEmail/:email", getUserByEmail);
+
+// Send code to the email
 userRouter.post("/resetEmailCode/:email", sendCodeResetPass);
+
+// Reset password
 userRouter.put("/reset/:email", resetPass);
 
 // Google auth

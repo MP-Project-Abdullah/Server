@@ -24,6 +24,7 @@ const newNotifications = (req, res) => {
   }
 };
 
+// Delete notification
 const deleteotification = (req, res) => {
   const { id } = req.params;
 
@@ -38,6 +39,7 @@ const deleteotification = (req, res) => {
     });
 };
 
+// Get notifications
 const getNotifications = (req, res) => {
   const { id } = req.params;
 
@@ -96,6 +98,7 @@ const updateShow = (req, res) => {
       res.status(400).json(err);
     });
 };
+
 module.exports = {
   updateShow,
   newNotifications,
