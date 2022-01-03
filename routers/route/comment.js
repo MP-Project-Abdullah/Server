@@ -17,12 +17,7 @@ commentRouter.post(
 );
 
 // Delete comment
-commentRouter.delete(
-  "/deleteComment/:_id",
-  authentication,
-
-  deleteCommet
-);
+commentRouter.delete("/deleteComment/:_id", authentication, deleteCommet);
 
 // Get one comment
 commentRouter.get("/comment/:_id", getComment);

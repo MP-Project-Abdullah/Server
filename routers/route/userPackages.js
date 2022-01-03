@@ -24,7 +24,7 @@ packagesUserRouter.post(
 // Git user packages
 packagesUserRouter.get("/getUserPackage/:packageId/:userId", getUserPackage);
 
-//
+// Get all backers
 packagesUserRouter.get("/backersPackage/:id", getBackers);
 
 // Get user donations

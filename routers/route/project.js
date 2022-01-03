@@ -1,7 +1,6 @@
 const express = require("express");
 const projectRouter = express.Router();
 const authentication = require("../middlewear/authentication");
-const authorization = require("../middlewear/authorization");
 
 const {
   newProject,
