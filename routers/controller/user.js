@@ -40,6 +40,7 @@ const register = async (req, res) => {
     newUser
       .save()
       .then((result) => {
+        console.log(result);
         let mail = {
           from: "w08d04socialmedia@gmail.com",
           to: result.email,
@@ -50,6 +51,7 @@ const register = async (req, res) => {
           if (err) {
             res.status(400).json(err);
           } else {
+            console.log("HERE");
             res.status(200).json(result);
           }
         });
