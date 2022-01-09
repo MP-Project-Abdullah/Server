@@ -1,6 +1,7 @@
 const express = require("express");
 const projectRouter = express.Router();
 const authentication = require("../middlewear/authentication");
+const authorization = require("../middlewear/authorization");
 
 const {
   newProject,
@@ -32,23 +33,29 @@ projectRouter.get("/projectsKind/:kind", getProjectsByKind);
 projectRouter.get("/project/:id", getProject);
 
 // Delete project ( Soft )
-projectRouter.put("/deleteProject/:_id", authentication, softDel);
-
-// update info project
-projectRouter.put("/updateProject/:_id", authentication, updateProject);
-
-// Update pledged project
 projectRouter.put(
-  "/updateProject/:projectId/:donate",
+  "/deleteProject/:_id",
   authentication,
-  updatePledged
+  authorization,
+  softDel
 );
 
+// update info project
+projectRouter.put("/updateProject/:_id", updateProject);
+
+// Update pledged project
+projectRouter.put("/updateProject/:projectId/:donate", updatePledged);
+
 // Approved project
-projectRouter.put("/aprooved/:_id", approvedProject);
+projectRouter.put(
+  "/aprooved/:_id",
+  authentication,
+  authorization,
+  approvedProject
+);
 
 // Reject project
-projectRouter.put("/reject/:_id", rejectProject);
+projectRouter.put("/reject/:_id", authentication, authorization, rejectProject);
 
 // Get all projects not approved
 projectRouter.get("/projectsNotApproved", getProjectNotApproved);

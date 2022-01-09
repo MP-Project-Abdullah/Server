@@ -36,7 +36,7 @@ userRouter.get("/user/:id", getUser);
 userRouter.post("/sendQuestion", contactUs);
 
 // Soft delete user
-userRouter.put("/deleteUser/:_id", authentication, authorization, softDel);
+userRouter.put("/deleteUser/:_id",authentication,authorization, softDel);
 
 // Update name and avatar user
 userRouter.put("/updateUser/:_id", authentication, updateUser);

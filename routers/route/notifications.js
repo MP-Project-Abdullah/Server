@@ -1,6 +1,7 @@
 const express = require("express");
 const notificationsRouter = express.Router();
-
+const authentication = require("../middlewear/authentication");
+const authorization = require("../middlewear/authorization");
 const {
   newNotifications,
   deleteotification,
@@ -9,10 +10,18 @@ const {
 } = require("../controller/notifications");
 
 // Create new notification
-notificationsRouter.post("/newNotif/:projectId/:userId", newNotifications);
+notificationsRouter.post(
+  "/newNotif/:projectId/:userId",
+  authentication,
+  newNotifications
+);
 
 // Delete notification
-notificationsRouter.delete("/deleteNotif/:id", deleteotification);
+notificationsRouter.delete(
+  "/deleteNotif/:id",
+  authentication,
+  deleteotification
+);
 
 // Get notifications
 notificationsRouter.get("/getNotif/:id", getNotifications);
